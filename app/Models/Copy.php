@@ -13,7 +13,7 @@ class Copy extends Model
 
     protected $fillable = [
         'book_id',
-        'prestrado',
+        'prestado',
     ];
 
     /* Relationships */

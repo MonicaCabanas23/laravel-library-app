@@ -12,7 +12,7 @@ class Booking extends Model
 
     protected $fillable = [
         'nombre',
-        'fecha_de_prestramo',
+        'fecha_de_prestamo',
         'fecha_de_devolucion',
         'copy_id', 
     ];

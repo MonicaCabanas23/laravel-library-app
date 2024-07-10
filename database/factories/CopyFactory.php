@@ -19,7 +19,7 @@ class CopyFactory extends Factory
     {
         return [
             'book_id' => \App\Models\Book::factory(),
-            'prestrado' => $this->faker->boolean(),
+            'prestado' => $this->faker->boolean(),
         ];
     }
 }

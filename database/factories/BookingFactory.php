@@ -19,7 +19,7 @@ class BookingFactory extends Factory
     {
         return [
             'nombre' => $this->faker->name(),
-            'fecha_de_prestramo' => $this->faker->date(),
+            'fecha_de_prestamo' => $this->faker->date(),
             'fecha_de_devolucion' => $this->faker->date(),
             'copy_id' => \App\Models\Copy::factory(),
         ];
