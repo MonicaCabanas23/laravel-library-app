@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Ejemplar;
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Prestamo extends Model
+class Author extends Model
 {
     use HasFactory;
 
     /* Relationships */
-    public function ejemplar()
+    public function books()
     {
-        return $this->belongsTo(Ejemplar::class);
+        return $this->hasMany(Book::class);
     }
 }

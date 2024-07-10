@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Libro;
+use App\Models\Copy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Autor extends Model
+class Booking extends Model
 {
     use HasFactory;
 
     /* Relationships */
-    public function libros()
+    public function copy()
     {
-        return $this->hasMany(Libro::class);
+        return $this->belongsTo(Copy::class);
     }
 }
