@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -23,21 +24,34 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('pages.books.create');
+        return view('pages.books.create', [
+            'autores' => Author::all()
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $info)
     {
-        $request->validate([
+        $info->validate([
             'titulo' => 'required',
             'ubicacion' => 'required',
             'cantidad_de_ejemplares' => 'required',
             'autor' => 'required',
         ]);
 
-        Book::create($request->all());
+        $autor = Author::firstOrCreate([
+            'nombre' => $info->autor
+        ]);
 
-        return redirect()->route('pages.books.index');
+        $book = new Book(); 
+        $book->titulo = $info->titulo;
+        $book->ubicacion = $info->ubicacion;
+        $book->cantidad_de_ejemplares = $info->cantidad_de_ejemplares;
+        $book->author_id = $autor->id;
+
+        $book->save();
+
+
+        return redirect(url('/'));
     }
 
     public function edit(Book $book)
