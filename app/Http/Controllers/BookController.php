@@ -9,21 +9,21 @@ class BookController extends Controller
 {
     public function index()
     {
-        return view('books.index', [
-            'books' => Book::all()
+        return view('pages.books.index', [
+            'libros' => Book::all()
         ]);
     }
 
     public function show(Book $book)
     {
-        return view('books.show', [
-            'book' => $book
+        return view('pages.books.show', [
+            'libro' => $book
         ]);
     }
 
     public function create()
     {
-        return view('books.create');
+        return view('pages.books.create');
     }
 
     public function store(Request $request)
@@ -37,13 +37,13 @@ class BookController extends Controller
 
         Book::create($request->all());
 
-        return redirect()->route('books.index');
+        return redirect()->route('pages.books.index');
     }
 
     public function edit(Book $book)
     {
-        return view('books.edit', [
-            'book' => $book
+        return view('pages.books.edit', [
+            'libro' => $book
         ]);
     }
 
@@ -58,13 +58,13 @@ class BookController extends Controller
 
         $book->update($request->all());
 
-        return redirect()->route('books.index');
+        return redirect()->route('pages.books.index');
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('pages.books.index');
     }
 }
