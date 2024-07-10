@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
 use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -54,31 +56,47 @@ class BookController extends Controller
         return redirect(url('/'));
     }
 
-    public function edit(Book $book)
+    public function edit($id)
     {
+        $book = Book::findOrFail($id);
+        $autor = Author::findOrFail($book->author_id);
+        
         return view('pages.books.edit', [
-            'libro' => $book
+            'libro' => $book, 
+            'autor' => $autor,
+            'autores' => Author::all()
         ]);
     }
 
-    public function update(Request $request, Book $book)
-    {
-        $request->validate([
+    public function update(Request $info, $id)
+    {   
+        $info->validate([
             'titulo' => 'required',
             'ubicacion' => 'required',
             'cantidad_de_ejemplares' => 'required',
             'autor' => 'required',
         ]);
 
-        $book->update($request->all());
+        $book = Book::findOrFail($id);
+        
+        $autor = Author::firstOrCreate([
+            'nombre' => $info->autor
+        ]);
 
-        return redirect()->route('pages.books.index');
+        $book->titulo = $info->titulo;
+        $book->ubicacion = $info->ubicacion;
+        $book->cantidad_de_ejemplares = $info->cantidad_de_ejemplares;
+        $book->author_id = $autor->id;
+
+        $book->save();
+
+        return redirect(url('/'));
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
 
-        return redirect()->route('pages.books.index');
+        return redirect(url('/'));
     }
 }

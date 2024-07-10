@@ -30,16 +30,25 @@
                         <td class="text-center">{{$libro->cantidad_de_ejemplares}}</td>
                         <td>
                             <div class="flex wrap gap-2 justify-center items-center">
-                                <x-form.button class="btn-outline btn-info">
+                                <x-form.button 
+                                    class="btn-outline btn-info"
+                                >
                                     Ver detalles
                                 </x-form.button>
-                                <x-form.button class="btn-outline btn-warning">
+                                <x-form.button 
+                                    class="btn-outline btn-warning"
+                                    onClick="edit({{ $libro->id }})"
+                                >
                                     Editar
                                 </x-form.button>
-                                <x-form.button class="btn-outline btn-error">
+                                <x-form.button 
+                                    class="btn-outline btn-error"
+                                >
                                     Eliminar
                                 </x-form.button>
-                                <x-form.button class="btn-outline btn-success">
+                                <x-form.button 
+                                    class="btn-outline btn-success"
+                                >
                                     Agregar préstamo
                                 </x-form.button>
                             </div>
@@ -49,6 +58,12 @@
                 </tbody>
               </table>
         </div>
-    
     </div>
+    <script>
+        function edit(id) {
+            event.preventDefault(); 
+            window.location.href = `/books/edit/${id}`
+        }
+    </script>
+
 </x-layouts.content>

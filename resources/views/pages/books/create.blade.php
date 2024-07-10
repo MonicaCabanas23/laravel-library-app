@@ -7,7 +7,8 @@
 
 <x-layouts.content>
     <x-form.form
-        routestr='books.store'    
+        routestr='books.store'
+        method="POST"    
     >
         <x-form.input
             label="Título"
@@ -33,11 +34,4 @@
             :options="$options"
         />
     </x-form.form>
-
-    <script>
-        function cancel() {
-            event.preventDefault()
-            window.location.href = "/";
-        }
-    </script>
 </x-layouts.content>

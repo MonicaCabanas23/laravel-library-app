@@ -1,11 +1,15 @@
-@props(['routestr' => '', 'class' => ''])
+@props(['routestr' => '', 'params' => '', 'method' => 'POST', 'class' => ''])
 
 <form 
-        action="{{ route($routestr) }}"
+        action="{{ route($routestr, $params) }}"
         method="POST"
         {{ $attributes->merge(['class' => 'w-1/3 bg-base-300 flex flex-col justify-center items-center gap-4 p-8 rounded-lg ' . $class]) }}
     >
+        @if ($method == "PUT")
+            @method('PUT')
+        @endif
         @csrf
+        
         {{$slot}}
         <div class="w-full flex gap-4 justify-center items-center">
             <x-form.button 

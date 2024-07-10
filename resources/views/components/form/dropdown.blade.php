@@ -1,4 +1,11 @@
-@props(['label' => 'Label', 'name' => '', 'placeholder' => '', 'type' => 'text', 'options' => ''])
+@props([
+    'value' => '',
+    'label' => 'Label', 
+    'name' => '', 
+    'placeholder' => '', 
+    'type' => 'text', 
+    'options' => ''
+])
 
 <div class="dropdown dropdown-bottom w-full flex flex-col gap-2">
     <x-form.input
@@ -6,6 +13,7 @@
         name="{{ $name }}"
         placeholder="{{ $placeholder}}"
         type="{{ $type}}"
+        value="{{ $value }}"
     />
     <ul 
         tabindex="0" 
