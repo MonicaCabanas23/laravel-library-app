@@ -36,16 +36,23 @@
                                     Ver detalles
                                 </x-form.button>
                                 <x-form.button 
-                                    class="btn-outline btn-warning"
-                                    onClick="edit({{ $libro->id }})"
+                                    class="btn-outline btn-warning edit-book"
+                                    data-url="{{ route('books.edit', $libro->id) }}"
                                 >
                                     Editar
                                 </x-form.button>
-                                <x-form.button 
-                                    class="btn-outline btn-error"
+                                <form 
+                                    action="{{ route('books.destroy', $libro->id)}}"
+                                    method="POST"    
                                 >
-                                    Eliminar
-                                </x-form.button>
+                                    @method('DELETE')
+                                    @csrf
+                                    <x-form.button 
+                                        class="btn-outline btn-error"
+                                    >
+                                        Eliminar
+                                    </x-form.button>
+                                </form>
                                 <x-form.button 
                                     class="btn-outline btn-success"
                                 >
@@ -59,11 +66,15 @@
               </table>
         </div>
     </div>
+    
     <script>
-        function edit(id) {
-            event.preventDefault(); 
-            window.location.href = `/books/edit/${id}`
-        }
+        $(function() {
+            $('.edit-book').on('click', function() {
+                event.preventDefault()
+                window.location.href = $(this).data('url')
+            })
+        })
+
     </script>
 
 </x-layouts.content>

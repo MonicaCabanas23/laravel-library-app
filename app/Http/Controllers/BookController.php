@@ -12,8 +12,10 @@ class BookController extends Controller
 {
     public function index()
     {
+        $books = Book::all();
+        $sortedBooks = $books->sortBy('id');
         return view('pages.books.index', [
-            'libros' => Book::all()
+            'libros' => $sortedBooks
         ]);
     }
 
@@ -93,8 +95,9 @@ class BookController extends Controller
         return redirect(url('/'));
     }
 
-    public function destroy(Book $book)
+    public function destroy($id)
     {
+        $book = Book::findOrFail($id);
         $book->delete();
 
         return redirect(url('/'));
