@@ -11,6 +11,11 @@ class Copy extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'book_id',
+        'prestrado',
+    ];
+
     /* Relationships */
     public function book()
     {

@@ -10,6 +10,13 @@ class Booking extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'fecha_de_prestramo',
+        'fecha_de_devolucion',
+        'copy_id', 
+    ];
+
     /* Relationships */
     public function copy()
     {
