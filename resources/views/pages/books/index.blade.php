@@ -5,7 +5,7 @@
 <x-layouts.content>
     <div class="w-full flex justify-between items-center">
         <p><b>Catálogo de libros</b></p>
-        <a href="/book/create">
+        <a href="/books/create">
             <x-button>
                 Agregar libro
             </x-button>
