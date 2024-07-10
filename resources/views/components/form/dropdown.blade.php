@@ -1,7 +1,7 @@
 @props(['label' => 'Label', 'name' => '', 'placeholder' => '', 'type' => 'text', 'options' => ''])
 
 <div class="dropdown dropdown-bottom w-full flex flex-col gap-2">
-    <x-input
+    <x-form.input
         label="{{ $label }}"
         name="{{ $name }}"
         placeholder="{{ $placeholder}}"
