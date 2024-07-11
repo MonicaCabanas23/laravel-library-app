@@ -9,7 +9,9 @@ class CopyController extends Controller
 {
     public function index($id) {
         $book = Book::find($id);
-        $copies = $book->copies;
+        $copies = $book->copies->filter(function($copy) {
+            return $copy->prestado === false;
+        });
 
         return view('pages.copies.index', [
             'copies' => $copies,
