@@ -1,3 +1,13 @@
+@php
+    $options = [];
+    foreach ($copies as $copy) {
+        $options[] = (object) [
+            'value' => $copy->id,
+            'name' => 'Ejemplar ' . $copy->id
+        ];
+    }
+@endphp
+
 <x-layouts.content>
     <x-form.form
         routestr='bookings.store'
@@ -8,10 +18,10 @@
             name="nombre"
             placeholder="Nombre del solicitante"
         />
-        <select name="copy" id="copy">
-            @foreach ($copies as $copy)
-                <option value="{{ $copy->id }}">Ejemplar {{ $copy->id }}</option>
-            @endforeach
-        </select>
+        <x-form.select
+            label="Ejemplar"
+            name="copy_id"
+            :options="$options"
+        />
     </x-form.form>
 </x-layouts.content>

@@ -13,8 +13,28 @@ class CopySeeder extends Seeder
      */
     public function run(): void
     {
-        Copy::factory()
+        /* Copy::factory()
             ->count(10)
-            ->create();
+            ->create(); */
+
+            Copy::create([
+                'book_id' => 68,
+                'prestado' => false
+            ]);
+
+            Copy::create([
+                'book_id' => 68,
+                'prestado' => false
+            ]);
+
+            Copy::create([
+                'book_id' => 68,
+                'prestado' => false
+            ]);
+
+            Copy::create([
+                'book_id' => 68,
+                'prestado' => false
+            ]);
     }
 }

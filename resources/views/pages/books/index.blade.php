@@ -30,7 +30,7 @@
                             <td class="text-center">{{$libro->ubicacion}}</td>
                             <td class="text-center">{{$libro->cantidad_de_ejemplares}}</td>
                             <td>
-                                <div class="w-48 flex flex-wrap gap-2 justify-center items-center">
+                                <div class="flex flex-wrap gap-2 justify-center items-center">
                                     <x-form.button 
                                         class="btn-outline btn-info view-active-bookings px-2 flex-col gap-1 grow"
                                         data-url="{{ route('bookings.index', $libro->id)}}"
@@ -59,7 +59,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <x-form.button 
-                                            class="btn-outline btn-error px-2 flex-col gap-1 grow"
+                                            class="btn-outline btn-error flex-col gap-1 grow"
                                         >
                                             <i class="fa-solid fa-trash"></i>
                                             <span><p style="font-size: x-small;">Eliminar</p></span>

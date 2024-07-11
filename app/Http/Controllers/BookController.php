@@ -54,6 +54,12 @@ class BookController extends Controller
 
         $book->save();
 
+        /* Create copies */
+        for ($i = 0; $i < $info->cantidad_de_ejemplares; $i++) {
+            $book->copies()->create([
+                'prestado' => false
+            ]);
+        }
 
         return redirect(url('/'));
     }

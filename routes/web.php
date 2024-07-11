@@ -26,7 +26,7 @@ Route::get('/bookings/{id}', BookingController::class . '@index')->name('booking
 
 Route::get('/bookings/create/{id}', BookingController::class . '@create')->name('bookings.create');
 
-Route::post('/bookings/store/{id}', BookingController::class . '@store')->name('bookings.store');
+Route::post('/bookings/store', BookingController::class . '@store')->name('bookings.store');
 
 /* Copy Routes */
 
