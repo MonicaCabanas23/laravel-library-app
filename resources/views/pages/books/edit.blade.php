@@ -1,9 +1,9 @@
 @php
     $options = [];
-    foreach ($autores as $autor) {
+    foreach ($autores as $author) {
         $options[] = (object) [
-            'value' => $autor->id,
-            'name' => $autor->nombre
+            'value' => $author->id,
+            'name' => $author->nombre
         ];
     }
 @endphp
@@ -34,6 +34,7 @@
             type="number"
         />
         <x-form.select
+            value="{{ $libro->author_id }}"
             label="Autor"
             name="autor"
             :options="$options"
@@ -45,9 +46,5 @@
             event.preventDefault()
             window.location.href = "/";
         }
-    </script>
-
-    <script>
-        console.log(<?php echo json_encode($autor); ?>);
     </script>
 </x-layouts.content>

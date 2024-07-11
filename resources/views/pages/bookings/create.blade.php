@@ -1,9 +1,9 @@
 @php
     $options = [];
-    foreach ($copies as $copy) {
+    foreach ($copies as $ejemplar) {
         $options[] = (object) [
-            'value' => $copy->id,
-            'name' => 'Ejemplar ' . $copy->id
+            'value' => $ejemplar->id,
+            'name' => 'Ejemplar ' . $ejemplar->id
         ];
     }
 @endphp
@@ -19,6 +19,7 @@
             placeholder="Nombre del solicitante"
         />
         <x-form.select
+            value="{{ $copy ? $copy->id : ''}}"
             label="Ejemplar"
             name="copy_id"
             :options="$options"

@@ -85,9 +85,7 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
         
-        $autor = Author::firstOrCreate([
-            'nombre' => $info->autor
-        ]);
+        $autor = Author::find($info->autor);
 
         $book->titulo = $info->titulo;
         $book->ubicacion = $info->ubicacion;

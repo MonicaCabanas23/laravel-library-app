@@ -33,3 +33,5 @@ Route::put('/bookings/update/{id}', BookingController::class . '@update')->name(
 /* Copy Routes */
 
 Route::get('/copies/{id}', CopyController::class . '@index')->name('copies.index');
+
+Route::get('/copies/borrow/{id}', CopyController::class . '@borrow')->name('copies.borrow');
