@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    /* Returns all books */
     public function index()
     {
         $books = Book::all();
@@ -19,13 +20,7 @@ class BookController extends Controller
         ]);
     }
 
-    public function show(Book $book)
-    {
-        return view('pages.books.show', [
-            'libro' => $book
-        ]);
-    }
-
+    /* Returns the view for creating a new book */
     public function create()
     {
         return view('pages.books.create', [
@@ -33,6 +28,7 @@ class BookController extends Controller
         ]);
     }
 
+    /* Store a new book */
     public function store(Request $info)
     {
         $info->validate([
@@ -64,6 +60,7 @@ class BookController extends Controller
         return redirect(url('/'));
     }
 
+    /* Returns the view for updating a book */
     public function edit($id)
     {
         $book = Book::findOrFail($id);
@@ -76,6 +73,7 @@ class BookController extends Controller
         ]);
     }
 
+    /* Mehtod for updating a book */
     public function update(Request $info, $id)
     {   
         $info->validate([
@@ -101,6 +99,7 @@ class BookController extends Controller
         return redirect(url('/'));
     }
 
+    /* Deletes the register of a book from the database */
     public function destroy($id)
     {
         $book = Book::findOrFail($id);

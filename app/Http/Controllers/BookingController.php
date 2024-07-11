@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    /* Get all active bookings of a book */
     public function index($id) {
         $book = Book::find($id);
         $copies = $book->copies;
@@ -30,6 +31,7 @@ class BookingController extends Controller
         ]);
     }
 
+    /* Return view for creating a booking */
     public function create($id) {
         $book = Book::find($id);
         $copies = $book->copies;
@@ -45,6 +47,7 @@ class BookingController extends Controller
         ]);
     }
 
+    /* Method for borrowing a copy*/
     public function store(Request $request) {
         $request->validate([
             'copy_id' => 'required',
@@ -65,6 +68,7 @@ class BookingController extends Controller
         return redirect(url('/'));
     }
 
+    /* Method for returning a copy and assigning a return date to the booking */
     public function update($id) {
         $booking = Booking::find($id);
         $booking->fecha_de_devolucion = date('Y-m-d');

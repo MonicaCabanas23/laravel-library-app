@@ -3,41 +3,34 @@
 @endphp
 
 <x-layouts.content>
-<div class="w-full min-h-full">
+    <div class="w-full min-h-full flex flex-col gap-4">
         <div class="w-full flex justify-between items-center">
-            <p><b>Ejemplares disponibles de: {{ $booktitle}}</b></p>
+            <p><b>Ejemplares disponibles de: {{ $booktitle }}</b></p>
         </div>
-        <div class="overflow-x-auto">
-    
-                <table class="table">
-                    <thead>
-                      <tr>
-                        @foreach ($titles as $title)
-                            <th scope="col" class="text-center">{{ $title }}</th>
-                        @endforeach
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($copies as $copy)
-                        <tr>
-                            <th scope="row">{{$copy->id}}</th>
-                            <td>
-                                <div class="flex wrap gap-2 justify-center items-center">
-                                    <x-form.button 
-                                        class="btn-outline btn-success borrow"
-                                        data-url="{{ route('bookings.create', $copy->book_id) }}"
-                                    >
-                                        Prestar
-                                    </x-form.button>
-                                </div>
-                            </td>
-                          </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
-            </div>
-        </div>
+        <x-table>
+            <x-slot name="headers">
+            @foreach ($titles as $title)
+                        <th scope="col" class="text-center text-base">{{ $title }}</th>
+                    @endforeach
+            </x-slot>
+            @foreach ($copies as $copy)
+                <tr>
+                    <th scope="row" class="w-24 text-center">{{$copy->id}}</th>
+                    <td>
+                        <div class="flex wrap gap-2 justify-center items-center">
+                            <x-form.button 
+                                class="btn-outline btn-success borrow"
+                                data-url="{{ route('bookings.create', $copy->book_id) }}"
+                            >
+                                Prestar
+                            </x-form.button>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </x-table>
     </div>
+    
 
     <script>
         $(function() {
