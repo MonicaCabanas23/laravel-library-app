@@ -20,7 +20,7 @@
             </x-slot>
             @foreach ($libros as $libro)
                 <tr>
-                    <th scope="row">{{$libro->id}}</th>
+                    <th scope="row" class="text-center">{{$libro->id}}</th>
                     <td class="text-center">{{$libro->titulo}}</td>
                     <td class="text-center">{{$libro->ubicacion}}</td>
                     <td class="text-center">{{$libro->cantidad_de_ejemplares}}</td>

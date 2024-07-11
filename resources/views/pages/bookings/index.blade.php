@@ -15,7 +15,7 @@
             </x-slot>
             @foreach ($bookings as $booking)
                 <tr>
-                    <th scope="row">{{$booking->copy_id}}</th>
+                    <th scope="row" class="text-center">{{$booking->copy_id}}</th>
                     <td class="text-center">{{$booking->nombre}}</td>
                     <td class="text-center">{{$booking->fecha_de_prestamo}}</td>
                     <td>
