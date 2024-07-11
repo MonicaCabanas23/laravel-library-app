@@ -62,8 +62,6 @@ class BookingController extends Controller
 
         $booking->save();
 
-        dd($booking);
-
         return redirect(url('/'));
     }
 
