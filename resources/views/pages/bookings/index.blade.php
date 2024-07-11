@@ -25,11 +25,18 @@
                             <td class="text-center">{{$booking->fecha_de_prestamo}}</td>
                             <td>
                                 <div class="flex wrap gap-2 justify-center items-center">
-                                    <x-form.button 
-                                        class="btn-outline btn-success"
+                                    <form 
+                                        action="{{ route('bookings.update', $booking->id)}}" 
+                                        method="POST"
                                     >
-                                        Devolver
-                                    </x-form.button>
+                                        @csrf
+                                        @method('PUT')
+                                        <x-form.button 
+                                            class="btn-outline btn-success"
+                                        >
+                                            Devolver
+                                        </x-form.button>
+                                    </form>
                                 </div>
                             </td>
                           </tr>

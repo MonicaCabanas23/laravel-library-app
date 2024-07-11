@@ -28,6 +28,8 @@ Route::get('/bookings/create/{id}', BookingController::class . '@create')->name(
 
 Route::post('/bookings/store', BookingController::class . '@store')->name('bookings.store');
 
+Route::put('/bookings/update/{id}', BookingController::class . '@update')->name('bookings.update');
+
 /* Copy Routes */
 
 Route::get('/copies/{id}', CopyController::class . '@index')->name('copies.index');

@@ -24,7 +24,8 @@
                             <td>
                                 <div class="flex wrap gap-2 justify-center items-center">
                                     <x-form.button 
-                                        class="btn-outline btn-success"
+                                        class="btn-outline btn-success borrow"
+                                        data-url="{{ route('bookings.create', $copy->book_id) }}"
                                     >
                                         Prestar
                                     </x-form.button>
@@ -37,4 +38,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(function() {
+            $('.borrow').on('click', function() {
+                event.preventDefault()
+                window.location.href = $(this).data('url')
+            })
+        })
+    </script>
 </x-layouts.content>

@@ -66,4 +66,16 @@ class BookingController extends Controller
 
         return redirect(url('/'));
     }
+
+    public function update($id) {
+        $booking = Booking::find($id);
+        $booking->fecha_de_devolucion = date('Y-m-d');
+        $booking->save();
+
+        $copy = Copy::find($booking->copy_id);
+        $copy->prestado = false;
+        $copy->save();
+
+        return redirect(url('/'));
+    }
 }
