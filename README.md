@@ -54,3 +54,8 @@
 <img src="img/available-copies-view.png" 
     style="width: 100%, align-self: center"
 />
+
+#### 6. Formulario para la creación de un préstamo
+<img src="img/create-booking-view.png" 
+    style="width: 100%, align-self: center"
+/>
