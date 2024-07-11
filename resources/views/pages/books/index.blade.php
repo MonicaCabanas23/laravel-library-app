@@ -36,7 +36,7 @@
                                         data-url="{{ route('bookings.index', $libro->id)}}"
                                     >
                                         <i class="fa-solid fa-clock"></i>
-                                        <span><p style="font-size: x-small;">Préstados</p></span>
+                                        <span><p style="font-size: x-small;">Prestados</p></span>
                                     </x-form.button>
                                     <x-form.button 
                                         class="btn-outline btn-info view-active-bookings px-2 flex-col gap-1 grow"
@@ -66,7 +66,8 @@
                                         </x-form.button>
                                     </form>
                                     <x-form.button 
-                                        class="btn-outline btn-success px-2 flex-col gap-1 grow"
+                                        class="btn-outline btn-success add-booking px-2 flex-col gap-1 grow"
+                                        data-url="{{ route('bookings.create', $libro->id) }}"
                                     >
                                         <i class="fa-solid fa-bookmark"></i>
                                         <span><p style="font-size: x-small;">Prestar</p></span>
@@ -97,6 +98,11 @@
             })
 
             $('.view-available-copies').on('click', function() {
+                event.preventDefault()
+                window.location.href = $(this).data('url')
+            })
+
+            $('.add-booking').on('click', function() {
                 event.preventDefault()
                 window.location.href = $(this).data('url')
             })

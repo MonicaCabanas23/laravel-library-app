@@ -27,4 +27,14 @@ class BookingController extends Controller
             'booktitle' => $book->titulo
         ]);
     }
+
+    public function create($id) {
+        $book = Book::find($id);
+        $copies = $book->copies;
+
+        return view('pages.bookings.create', [
+            'book' => $book,
+            'copies' => $copies
+        ]);
+    }
 }

@@ -24,6 +24,10 @@ Route::delete('/books/destroy/{id}', BookController::class . '@destroy')->name('
 
 Route::get('/bookings/{id}', BookingController::class . '@index')->name('bookings.index');
 
+Route::get('/bookings/create/{id}', BookingController::class . '@create')->name('bookings.create');
+
+Route::post('/bookings/store/{id}', BookingController::class . '@store')->name('bookings.store');
+
 /* Copy Routes */
 
 Route::get('/copies/{id}', CopyController::class . '@index')->name('copies.index');

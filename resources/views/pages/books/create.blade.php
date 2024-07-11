@@ -1,7 +1,10 @@
 @php
     $options = [];
     foreach ($autores as $autor) {
-        array_push($options, $autor->nombre);
+        $options[] = (object) [
+            'value' => $autor->id,
+            'name' => $autor->nombre
+        ];
     }
 @endphp
 
@@ -26,12 +29,11 @@
             placeholder="Cantidad de ejemplares"
             type="number"
         />
-        <!-- TODO: make the dropdown dinamic -->
-        <x-form.dropdown
+        <x-form.select
             label="Autor"
             name="autor"
-            placeholder="Seleccione un autor"
             :options="$options"
         />
     </x-form.form>
+    
 </x-layouts.content>
