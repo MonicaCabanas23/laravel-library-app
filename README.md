@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ejercicio:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+##  Proyecto biblioteca
+1)  Crear una pantalla donde se pueda ver un catálogo de libros, con la posibilidad de:
+    - editar libro (botón en tabla)
+    - eliminar libro (botón en tabla)
+    - agregar libro (botón fuera de la tabla)
+    - ver listado de préstamos de libro (botón para mostrar listado)
+    - ver cantidad de ejemplares por libro / ver ejemplares sin prestar (disponibles)
+    - registar préstamo de libro (botón para mostrar formulario de prestamo)
 
-## About Laravel
+1)  Crear una pantalla (o modal de preferencia) para mostrar listado de préstamos realizado por libro, con la posibilidad de:
+    - recibir un libro prestado ( botón en tabla )
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1)  Crear un formulario para registrar el prestamo de un libro
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Hay libertad para la creación de la estructura de base de datos, pero se espera como mínimo:
+    - Una tabla de libros
+        - una columna de título
+        - una columna de ubicación
+        - una columna de cantidad de ejemplares
+        - vinculo con tabla de autores
+    - Una tabla de autores asociada a libros
+        - una columna de nombre de autor
+        - una columna de fecha de nacimiento
+    - Una tabla de préstamos de libros
+        - una columna con nombre de persona que retiró el libro
+        - una columna de fecha de préstamo
+        - una columna de fecha de devolución
+        - vínculo con tabla de libro prestado
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Ejecución
+#### 1. Vista de catálogo de libros
+<img src="img/landing.png" 
+    style="width: 100%, align-self: center"
+/>
 
-## Learning Laravel
+#### 2. Formulario para la edición de un libro
+<img src="img/edit-view.png" 
+    style="width: 100%, align-self: center"
+/>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 3. Formulario para la creación de un nuevo libro
+<img src="img/create-book.png" 
+    style="width: 100%, align-self: center"
+/>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 4. Vista de préstamos activos de un libro
+<img src="img/active-bookings-view.png" 
+    style="width: 100%, align-self: center"
+/>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 5. Vista de ejemplares disponibles de un libro
+<img src="img/available-copies-view.png" 
+    style="width: 100%, align-self: center"
+/>

@@ -43,6 +43,7 @@ class BookingController extends Controller
 
         return view('pages.bookings.create', [
             'book' => $book,
+            'copy' => null,
             'copies' => $copies
         ]);
     }
