@@ -77,31 +77,5 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <script>
-        $(function() {
-
-            $('.edit-book').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-
-            $('.view-active-bookings').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-
-            $('.view-available-copies').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-
-            $('.add-booking').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-        })
-
-    </script>
 
 </x-layouts.content>
