@@ -4,7 +4,5 @@
             {{$headers}}
         </tr>
     </thead>
-    <tbody>
-        {{$slot}}
-    </tbody>
+    {{$slot}}
 </table>
