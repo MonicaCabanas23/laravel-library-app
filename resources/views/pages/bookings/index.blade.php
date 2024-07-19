@@ -39,15 +39,4 @@
         </x-table> 
     </div>
 </div>
-    
-    <script>
-        $(function() {
-            $('.edit-book').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-        })
-
-    </script>
-
 </x-layouts.content>

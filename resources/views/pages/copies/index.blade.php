@@ -30,14 +30,4 @@
             @endforeach
         </x-table>
     </div>
-    
-
-    <script>
-        $(function() {
-            $('.borrow').on('click', function() {
-                event.preventDefault()
-                window.location.href = $(this).data('url')
-            })
-        })
-    </script>
 </x-layouts.content>
