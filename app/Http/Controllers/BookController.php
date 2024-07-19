@@ -2,21 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\Author;
+use App\Services\AuthorService;
+use App\Services\BookService;
+use App\Services\CopyService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+
+    private BookService $bookService;
+    private CopyService $copyService;
+    private AuthorService $authorService;
+
+    public function __construct(BookService $bookService, CopyService $copyService, AuthorService $authorService) {
+        $this->bookService = $bookService;
+        $this->copyService = $copyService;
+        $this->authorService = $authorService;
+    }
+
     /* Returns all books */
     public function index()
     {
-        $books = Book::all();
-        $sortedBooks = $books->sortBy('id');
+        $books = [];
+        foreach ($this->bookService->findAllSortedById() as $book) {
+            $author = $this->authorService->findById($book->author_id);
+            $books[] = (object) [
+                'id' => $book->id,
+                'titulo' => $book->titulo,
+                'ubicacion' => $book->ubicacion,
+                'ejemplares_disponibles' => $this->copyService->findAvailableCopies($book)->count(),
+                'ejemplares_prestados' => $this->copyService->findBorrowedCopies($book)->count(),
+                'autor' => $author->nombre
+            ];
+        }
         return view('pages.books.index', [
-            'libros' => $sortedBooks
+            'libros' => $books
         ]);
     }
 
@@ -24,7 +44,7 @@ class BookController extends Controller
     public function create()
     {
         return view('pages.books.create', [
-            'autores' => Author::all()
+            'autores' => $this->authorService->findAllSortedByName()
         ]);
     }
 
@@ -38,23 +58,12 @@ class BookController extends Controller
             'autor' => 'required',
         ]);
 
-        $autor = Author::firstOrCreate([
-            'nombre' => $info->autor
-        ]);
-
-        $book = new Book(); 
-        $book->titulo = $info->titulo;
-        $book->ubicacion = $info->ubicacion;
-        $book->cantidad_de_ejemplares = $info->cantidad_de_ejemplares;
-        $book->author_id = $autor->id;
-
-        $book->save();
+        $autor = $this->authorService->findByName($info->autor);
+        $book = $this->bookService->createBook($autor, $info);
 
         /* Create copies */
         for ($i = 0; $i < $info->cantidad_de_ejemplares; $i++) {
-            $book->copies()->create([
-                'prestado' => false
-            ]);
+            $this->copyService->createCopy($book);
         }
 
         return redirect(url('/'));
@@ -63,13 +72,13 @@ class BookController extends Controller
     /* Returns the view for updating a book */
     public function edit($id)
     {
-        $book = Book::findOrFail($id);
-        $autor = Author::findOrFail($book->author_id);
+        $book = $this->bookService->findById($id);
+        $autor = $this->authorService->findById($book->author_id);
         
         return view('pages.books.edit', [
             'libro' => $book, 
             'autor' => $autor,
-            'autores' => Author::all()
+            'autores' => $this->authorService->findAllSortedByName()
         ]);
     }
 
@@ -83,16 +92,9 @@ class BookController extends Controller
             'autor' => 'required',
         ]);
 
-        $book = Book::findOrFail($id);
-        
-        $autor = Author::find($info->autor);
-
-        $book->titulo = $info->titulo;
-        $book->ubicacion = $info->ubicacion;
-        $book->cantidad_de_ejemplares = $info->cantidad_de_ejemplares;
-        $book->author_id = $autor->id;
-
-        $book->save();
+        $book = $this->bookService->findById($id);
+        $autor = $this->authorService->findByName($info->autor);
+        $this->bookService->updateBook($book, $autor, $info);
 
         return redirect(url('/'));
     }
@@ -100,8 +102,7 @@ class BookController extends Controller
     /* Deletes the register of a book from the database */
     public function destroy($id)
     {
-        $book = Book::findOrFail($id);
-        $book->delete();
+        $this->bookService->deleteBook($this->bookService->findById($id));
 
         return redirect(url('/'));
     }

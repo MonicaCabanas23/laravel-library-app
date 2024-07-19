@@ -1,5 +1,5 @@
 @php
-    $titles = ['#', 'Título', 'Ubicación', 'Ejemplares', 'Acciones'];
+    $titles = ['#', 'Título', 'Ubicación', 'Autor', 'Ejemplares disponibles', 'Ejemplares prestados'];
 @endphp
 
 <x-layouts.content>
@@ -23,8 +23,10 @@
                     <th scope="row" class="text-center">{{$libro->id}}</th>
                     <td class="text-center">{{$libro->titulo}}</td>
                     <td class="text-center">{{$libro->ubicacion}}</td>
-                    <td class="text-center">{{$libro->cantidad_de_ejemplares}}</td>
-                    <td>
+                    <td class="text-center">{{$libro->autor}}</td>
+                    <td class="text-center">{{$libro->ejemplares_disponibles}}</td>
+                    <td class="text-center">{{$libro->ejemplares_prestados}}</td>
+                    <!-- <td>
                         <div class="flex flex-wrap gap-2 justify-center items-center">
                             <x-form.button 
                                 class="btn-outline btn-info view-active-bookings px-2 flex-col gap-1 grow"
@@ -69,7 +71,7 @@
                                 <span><p style="font-size: x-small;">Prestar</p></span>
                             </x-form.button>
                         </div>
-                    </td>
+                    </td> -->
                 </tr>
             @endforeach
         </x-table>

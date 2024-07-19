@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Copy;
 use App\Models\Booking;
+use App\Services\BookingService;
+use App\Services\CopyService;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+
+    private BookingService $bookingService;
+    private CopyService $copyService;
+
+    public function __construct(BookingService $bookingService, CopyService $copyService) {
+        $this->bookingService = $bookingService;
+        $this->copyService = $copyService;
+    }
+
     /* Get all active bookings of a book */
     public function index($id) {
         $book = Book::find($id);
@@ -34,12 +45,9 @@ class BookingController extends Controller
     /* Return view for creating a booking */
     public function create($id) {
         $book = Book::find($id);
-        $copies = $book->copies;
 
         /* Only available copies */
-        $copies = $copies->filter(function($copy) {
-            return $copy->prestado === false;
-        });
+        $copies = $this->copyService->findAvailableCopies($book);
 
         return view('pages.bookings.create', [
             'book' => $book,
@@ -48,7 +56,9 @@ class BookingController extends Controller
         ]);
     }
 
-    /* Method for borrowing a copy*/
+    /**
+     * Store a new booking
+     */
     public function store(Request $request) {
         $request->validate([
             'copy_id' => 'required',
@@ -56,15 +66,7 @@ class BookingController extends Controller
         ]);
 
         $copy = Copy::find($request->copy_id);
-        $copy->prestado = true;
-        $copy->save();
-
-        $booking = new Booking();
-        $booking->copy_id = $request->copy_id;
-        $booking->nombre = $request->nombre;
-        $booking->fecha_de_prestamo = date('Y-m-d');
-
-        $booking->save();
+        $this->bookingService->createBooking($copy, $request->nombre);
 
         return redirect(url('/'));
     }

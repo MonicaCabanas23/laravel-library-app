@@ -1,3 +1,3 @@
 import './bootstrap';
-import './book';
+import './button-actions';
 import './theme-controller';
