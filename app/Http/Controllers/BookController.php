@@ -58,7 +58,7 @@ class BookController extends Controller
             'autor' => 'required',
         ]);
 
-        $autor = $this->authorService->findByName($info->autor);
+        $autor = $this->authorService->findById($info->autor);
         $book = $this->bookService->createBook($autor, $info);
 
         /* Create copies */
